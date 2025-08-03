@@ -17,16 +17,16 @@ jobs:
         with:
           go-version: "1.24"
 
-      - name: Build binary
-        run: |
-          go build -o fastcheck .  # 替换为你的构建命令
-          tar -czvf fastcheck.tar.gz fastcheck
+      # - name: Build binary
+      #   run: |
+      #     go build -o fastcheck .
+      #     tar -czvf fastcheck.tar.gz fastcheck
 
       - name: Build for multiple platforms
         run: |
-          GOOS=linux GOARCH=amd64 go build -o fastcheck .
-          GOOS=darwin GOARCH=arm64 go build -o fastcheck .
-          GOOS=windows GOARCH=amd64 go build -o fastcheck .
+          GOOS=linux GOARCH=amd64 go build -o fastcheck-amd64 .
+          GOOS=darwin GOARCH=arm64 go build -o fastcheck-arm64 .
+          GOOS=windows GOARCH=amd64 go build -o fastchecks-amd64.exe .
           tar -czvf release.tar.gz fastcheck*
 
       - name: Create Release
