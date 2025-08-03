@@ -33,7 +33,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            release.tar.gz  # 上传的二进制包
+            release.tar.gz
           body: "## Changelog\n\n- Feature 1\n- Bug fix 2"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
