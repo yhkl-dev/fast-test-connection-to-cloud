@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
@@ -86,10 +87,20 @@ func main() {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-
-	if resp["StatusCode"] == 200 {
+	if resp == nil {
+		fmt.Println("❌ API response is nil")
+		return
+	}
+	statusCode, err := resp["statusCode"].(json.Number).Int64()
+	if err != nil {
+		fmt.Println("❌ Invalid statusCode type")
+		return
+	}
+	if statusCode == 200 {
 		fmt.Println("successful connected to Aliabab Cloud")
+		return
 	} else {
-		fmt.Println(resp["body"])
+		fmt.Println(resp)
+		return
 	}
 }
